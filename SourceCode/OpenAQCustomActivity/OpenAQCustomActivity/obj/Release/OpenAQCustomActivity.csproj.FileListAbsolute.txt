@@ -1,0 +1,13 @@
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\OpenAQCustomActivity.dll
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\OpenAQCustomActivity.pdb
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\AWSSDK.Core.dll
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\AWSSDK.SimpleNotificationService.dll
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\Newtonsoft.Json.dll
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\AWSSDK.Core.pdb
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\AWSSDK.Core.xml
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\AWSSDK.SimpleNotificationService.xml
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\bin\Release\Newtonsoft.Json.xml
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\obj\Release\OpenAQCustomActivity.csproj.CoreCompileInputs.cache
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\obj\Release\OpenAQCustomActivity.csproj.CopyComplete
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\obj\Release\OpenAQCustomActivity.dll
+C:\Users\sajaved\Desktop\UiPath\custom_activities\CustomActivityTest\OpenAQCustomActivity\obj\Release\OpenAQCustomActivity.pdb

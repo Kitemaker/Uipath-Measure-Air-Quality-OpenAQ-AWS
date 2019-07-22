@@ -1,0 +1,10 @@
+Name ,Country ,City, Count,Distance,SourceName,FirstUpdated,LastUpdated,Paramaeters,Coordinates
+Adarsh Nagar Jaipur - RSPCB,IN,Jaipur,25714,0,caaqm,2018-03-09T05:30:00.000Z,2019-07-22T15:15:00.000Z,so2;pm10;co;no2;pm25;o3,26.902908,75.83685
+Adarsh Nagar Jaipur- RSPCB,IN,Jaipur,28562,0,CPCB,2017-10-16T18:30:00.000Z,2018-02-22T02:45:00.000Z,co;pm10;pm25;no2;o3;so2,NA,NA
+Police Commissionerate,IN,Jaipur,24661,0,CPCB,2017-06-19T04:45:00.000Z,2017-10-24T06:45:00.000Z,no2;so2;o3;co;pm10;pm25,NA,NA
+Police Commissionerate Jaipur - RSPCB,IN,Jaipur,19617,0,caaqm,2018-03-09T05:30:00.000Z,2019-07-22T15:15:00.000Z,pm10;co;pm25;so2;no2;o3,26.916409,75.79949
+Police Commissionerate Jaipur- RSPCB,IN,Jaipur,16903,0,CPCB,2017-10-24T07:15:00.000Z,2018-02-22T02:45:00.000Z,no2;so2;pm25;pm10;co;o3,NA,NA
+Shastri Nagar Jaipur - RSPCB,IN,Jaipur,55891,0,caaqm,2018-03-09T05:30:00.000Z,2019-07-22T15:30:00.000Z,no2;pm25;co;so2;pm10;o3,26.950293,75.73094
+Shastri Nagar Jaipur- RSPCB,IN,Jaipur,21412,0,CPCB,2017-10-23T18:30:00.000Z,2018-02-22T03:00:00.000Z,pm25;no2;co;pm10;so2;o3,NA,NA
+Shastri NagarJaipur- RSPCB,IN,Jaipur,6,0,CPCB,2017-10-24T07:00:00.000Z,2017-10-24T07:00:00.000Z,co;pm10;o3;pm25;so2;no2,NA,NA
+VK Industrial Area Jaipur - RSPCB,IN,Jaipur,111381,0,CPCB,2016-03-21T18:30:00.000Z,2017-06-12T05:30:00.000Z,o3;no2;pm10;pm25;co;so2,26.973877,75.77388

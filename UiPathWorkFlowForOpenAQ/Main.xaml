@@ -1,0 +1,184 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:o="clr-namespace:OpenAQCustomActivity;assembly=OpenAQCustomActivity" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ApiRequestStatus" Type="OutArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="Type 'o:Country' ('clr-namespace:OpenAQCustomActivity;assembly=OpenAQCustomActivity') could not be resolved and was automatically replaced with 'UnknownType'" Name="CountriesArray" Type="OutArgument(o:Country[])" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>628,2110</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="25">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>OpenAQCustomActivity</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Amazon.Runtime.CredentialManagement</x:String>
+      <x:String>Amazon.Runtime</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="21">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>OpenAQCustomActivity</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>AWSSDK.Core</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="617,2655" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="o:Country[]" sap2010:Annotation.AnnotationText="Type 'o:Country' ('clr-namespace:OpenAQCustomActivity;assembly=OpenAQCustomActivity') could not be resolved and was automatically replaced with 'UnknownType'" Name="Countries" />
+      <Variable x:TypeArguments="x:Int32" Name="Status" />
+      <Variable x:TypeArguments="x:String" Default="https://api.openaq.org/v1/cities?country={0}" Name="API_GET_CITIES_OF_COUNTRY" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="Count" />
+      <Variable x:TypeArguments="x:Int32" Name="GetCitiesApiRequestStatus" />
+      <Variable x:TypeArguments="o:City[]" sap2010:Annotation.AnnotationText="Type 'o:City' ('clr-namespace:OpenAQCustomActivity;assembly=OpenAQCustomActivity') could not be resolved and was automatically replaced with 'UnknownType'" Name="Cities" />
+      <Variable x:TypeArguments="o:Location[]" Name="Locations" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="LatestMeasurementsOut" />
+      <Variable x:TypeArguments="s:String[]" Name="ItemData" />
+      <Variable x:TypeArguments="x:String" Default="OpenAQ.log" Name="LogFileName" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="579,284" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// This is an example of workflow to get the Air Quality Measurement for a City using API of https://openaq.org.&#xD;&#xA;For documentation of API Please see https://docs.openaq.org/#api-Cities.&#xD;&#xA;&#xD;&#xA;We can set a threshol value for the any parameter using the latest measurement. In this examle it is shown that if a vlaue exceeds than &#xD;&#xA;then an alert notification can be sent to any Notification Service e.g. AWS SNS Notification.&#xD;&#xA;Workflow for publishing the alert message is given in the example.&#xD;&#xA;" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="579,303" sap2010:WorkflowViewState.IdRef="Comment_2" Text="//Please provide following input to get the measurement:&#xD;&#xA;&#xD;&#xA;For Get Cities:  Country Code 2 Letter ISO Code&#xD;&#xA;For Get Locations:  City Name and Country Code&#xD;&#xA;For Measurement: City Name and COuntry Code.&#xD;&#xA;&#xD;&#xA;To Publish Message to AWS&#xD;&#xA;Please provide :&#xD;&#xA;AWS Profile Name: ( Credentials must be stored on local machine please refer AWS documentation for AWS SDK for .NET to set the credentails)&#xD;&#xA;SNS Topic ARN&#xD;&#xA;SNS Region : e.g. &quot;us-east-1&quot;&#xD;&#xA;Message&#xD;&#xA;&#xA;" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetCountries workflow" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetCountries.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="WriteFileInArg">True</InArgument>
+        <OutArgument x:TypeArguments="o:Country[]" x:Key="CountriesArrayOutArg">[Countries]</OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="ApiRequestStatusOutArg" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Assign sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[Count]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[Countries.Length]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:AppendLine DisplayName="Append Line" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[System.DateTime.Now.ToString() + &quot;\tTotal Number of countries = &quot; + Count.ToString()]" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetCities workflow" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="GetCities.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="CountryInArg">IN</InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="ApiRequestStatus">[GetCitiesApiRequestStatus]</OutArgument>
+        <OutArgument x:TypeArguments="o:City[]" x:Key="CitiesOutArg">[Cities]</OutArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="WriteFileInArg">False</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:AppendLine DisplayName="Append Line" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[System.DateTime.Now.ToString()+ &quot;\t&quot; + String.Format(&quot;Total Number of cities in {0}  = {1}&quot;,  &quot;IN&quot;,Cities.Length.ToString())]" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetLocations workflow" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="GetLocations.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="CountryInArg">IN</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="WriteFileInArg">True</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="CityInArg">Jaipur</InArgument>
+        <OutArgument x:TypeArguments="o:Location[]" x:Key="LocationsOutArg">[Locations]</OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="ApiRequestStatusOutArg">[Status]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:AppendLine DisplayName="Append Line" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_3" Text="[System.DateTime.Now.ToString()+ &quot;\t&quot; +String.Format(&quot;Total Number of Locations in City {0} &quot; , Locations.Length.ToString())]" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetLatestMeasurement workflow" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="GetLatestMeasurement.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="CountryInArg">IN</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="WriteFileInArg">True</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="CityInArg">Jaipur</InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="ApiRequestStatusOutArg">[Status]</OutArgument>
+        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="LatestMeasurementOutArg">[LatestMeasurementsOut]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="outputlist" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:AppendLine DisplayName="Append Line" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_5" Text="[System.DateTime.Now.ToString()+ &quot;\t&quot; +String.Format(&quot;Total Number of LatestMeasurementsOut  in City {0} &quot; , LatestMeasurementsOut.Count.ToString())]" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="579,780" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[LatestMeasurementsOut]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="547,646" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="509,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[ItemData]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[item.Split(New Char() {","c})]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[ItemData(4) =&quot;pm25&quot;  AND Convert.ToDouble(ItemData(5)) &gt; 100]" sap:VirtualizedContainerService.HintSize="509,454" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="368,306" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Default="" Name="TopicArn" />
+                    <Variable x:TypeArguments="x:String" Name="PublishResponseStatus" />
+                    <Variable x:TypeArguments="x:String" Default="" Name="AwsProfileName" />
+                    <Variable x:TypeArguments="x:String" Default="us-east-1" Name="AwsRegion" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:AppendLine DisplayName="Append Line" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_6" Text="[System.DateTime.Now.ToString()+ &quot;   &quot; + item]" />
+                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke PublishAwsSnsMessage workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="PublishAwsSnsMessage.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="LogFileNameInArg">[LogFileName]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="MessageInArg">[item]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="TopicArnInArg">[TopicArn]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="AwsProfileNameInArg">[AwsProfileName]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="AwsRegionInArg">[AwsRegion]</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="ResponseStatusOutArg">[PublishResponseStatus]</OutArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>
