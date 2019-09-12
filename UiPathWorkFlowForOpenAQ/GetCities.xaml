@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1066,2408</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1066,2445</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="23">
@@ -61,23 +61,27 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetCities" sap:VirtualizedContainerService.HintSize="1026,2288" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="GetCities" sap:VirtualizedContainerService.HintSize="1026,2365" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="Status" />
       <Variable x:TypeArguments="x:String" Name="CitiesApiResult" />
       <Variable x:TypeArguments="x:String" Default="https://api.openaq.org/v1/cities?limit=1000&amp;country={0}" Name="API_GET_CITIES_OF_COUNTRY" />
-      <Variable x:TypeArguments="x:String" Default="IN" Name="Country" />
+      <Variable x:TypeArguments="x:String" Name="Country">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="o:CitiesResult" Name="JsonCities" />
       <Variable x:TypeArguments="o:City[]" Name="Cities" />
-      <Variable x:TypeArguments="x:Boolean" Default="True" Name="writefile" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="WriteFile" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="988,246" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// This workflow provides functionality to get the list of City names in a Country for which Air Quality data is available on OpenAQ.org&#xD;&#xA;&#xD;&#xA;User can generate CSV file to save the full list with following columns:&#xD;&#xA;&#xD;&#xA;City ( Name of the city), &#xD;&#xA;Country (Country containing city, in 2 letter ISO code)&#xD;&#xA;, Locations (Number of locations in this city)&#xD;&#xA; , Count (Number of measurements for this city)" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="988,74" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Provide the  2 letter ISO code for the Country" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="988,285" sap2010:WorkflowViewState.IdRef="Comment_1" Text="This workflow provides functionality to get the list of City names in a Country for which Air Quality data is available on OpenAQ.org&#xA;&#xA;User can generate CSV file to save the full list with following columns:&#xA;&#xA;City ( Name of the city), &#xA;Country (Country containing city, in 2 letter ISO code)&#xA;, Locations (Number of locations in this city)&#xA; , Count (Number of measurements for this city)&#xD;&#xA;&#xD;&#xA;OUTPUT:&#xD;&#xA;CitiesOutArg" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="988,112" sap2010:WorkflowViewState.IdRef="Comment_2" Text="Provide 2 letter ISO code for the Country. If this workflow is being called from other workflow then the 2 letter ISO code should be provided in argument &quot;CountryInArg&quot;" />
     <Assign sap:VirtualizedContainerService.HintSize="988,60" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[Country]</OutArgument>
@@ -131,13 +135,13 @@
     <ui:Comment sap:VirtualizedContainerService.HintSize="988,74" sap2010:WorkflowViewState.IdRef="Comment_3" Text="// Output will be written in a file if writefile == True" />
     <Assign sap:VirtualizedContainerService.HintSize="988,60" sap2010:WorkflowViewState.IdRef="Assign_9">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:Boolean">[writefile]</OutArgument>
+        <OutArgument x:TypeArguments="x:Boolean">[WriteFile]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:Boolean">[WriteFileInArg]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[writefile]" sap:VirtualizedContainerService.HintSize="988,1020" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[WriteFile]" sap:VirtualizedContainerService.HintSize="988,1020" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="847,872" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <Sequence.Variables>
@@ -182,11 +186,11 @@
                             <InArgument x:TypeArguments="x:String" xml:space="preserve">[item.city.Replace(",","").Replace("\n","") + "," + item.country.ToString() + ","  + item.locations.ToString() + "," + item.count.ToString()]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <ui:AppendLine DisplayName="Append Line" FileName="[FileName]" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[output]" />
+                        <ui:AppendLine DisplayName="Write Output File" FileName="[FileName]" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[output]" />
                       </Sequence>
                     </If.Then>
                     <If.Else>
-                      <ui:AppendLine DisplayName="Append Line" FileName="CityofCountryError.log" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[&quot;City  name is not avalable :&quot; + item.city + item.country]" />
+                      <ui:AppendLine DisplayName="Write log File" FileName="CityofCountryError.log" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[&quot;City  name is not avalable :&quot; + item.city + item.country]" />
                     </If.Else>
                   </If>
                 </Sequence>

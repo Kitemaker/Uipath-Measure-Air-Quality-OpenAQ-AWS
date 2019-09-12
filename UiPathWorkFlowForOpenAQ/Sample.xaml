@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>657,3602</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>657,3154</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="25">
@@ -62,7 +62,7 @@
       <AssemblyReference>AWSSDK.Core</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="617,5494" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="617,3074" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="o:Country[]" sap2010:Annotation.AnnotationText="Type 'o:Country' ('clr-namespace:OpenAQCustomActivity;assembly=OpenAQCustomActivity') could not be resolved and was automatically replaced with 'UnknownType'" Name="Countries" />
       <Variable x:TypeArguments="x:Int32" Name="Status" />
@@ -107,54 +107,20 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,284" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// This is an example of workflow to get the Air Quality Measurement for a City using API of https://openaq.org.&#xA;For documentation of API Please see https://docs.openaq.org/#api-Cities.&#xA;&#xA;We can set a threshol value for the any parameter using the latest measurement. In this examle it is shown that if a vlaue exceeds than &#xA;then an alert notification can be sent to any Notification Service e.g. AWS SNS Notification.&#xA;Workflow for publishing the alert message is given in the example.&#xA;" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,361" sap2010:WorkflowViewState.IdRef="Comment_2" Text="//Please provide following input to get the measurement:&#xA;&#xA;For Get Cities:  Country Code 2 Letter ISO Code&#xD;&#xA;&#xA;For Get Locations:  City Name and Country Code&#xD;&#xA;&#xA;For Measurement: City Name and COuntry Code.&#xA;&#xA;To Publish Message to AWS&#xA;Please provide :&#xA;AWS Profile Name: ( Credentials must be stored on local machine please refer AWS documentation for AWS SDK for .NET to set the credentails)&#xA;SNS Topic ARN&#xA;SNS Region : e.g. &quot;us-east-1&quot;&#xA;Message&#xA;&#xA;" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,151" sap2010:WorkflowViewState.IdRef="Comment_6" Text="GetCountries.xaml reads the list of countries for which data is available. &#xD;&#xA;&#xD;&#xA;NOTE:If user knows the 2 Letter ISO code of targeted country then this step can be skipped" />
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Get Country Codes for which data is available" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetCountries.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="WriteFileInArg">True</InArgument>
-        <OutArgument x:TypeArguments="o:Country[]" x:Key="CountriesArrayOutArg">[Countries]</OutArgument>
-        <OutArgument x:TypeArguments="x:Int32" x:Key="ApiRequestStatusOutArg" />
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <Assign sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_2">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:Int32">[Count]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:Int32">[Countries.Length]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:AppendLine DisplayName="Write Logs" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[System.DateTime.Now.ToString() + &quot;\tTotal Number of countries = &quot; + Count.ToString()]" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,208" sap2010:WorkflowViewState.IdRef="Comment_3" Text="Get cities in a country for which data is available in OpenAQ&#xD;&#xA;Assign 2 Letter ISO Code of the country for which list of cities to be acquired to the variable Country&#xD;&#xA;e.g. Country = &quot;IN&quot;&#xD;&#xA;&#xD;&#xA;NOTE: If city name is known to the user as per OpenAQ data base then following call can be skipped&#xD;&#xA;" />
-    <Assign DisplayName="Assign Country Name" sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Assign Country Name" sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[Country]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">
-          <Literal x:TypeArguments="x:String" Value="" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String">IN</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Get Name of Cities listed in OpenAQ for a country " sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="GetCities.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="CountryInArg">[Country]</InArgument>
-        <OutArgument x:TypeArguments="x:Int32" x:Key="ApiRequestStatus">[GetCitiesApiRequestStatus]</OutArgument>
-        <OutArgument x:TypeArguments="o:City[]" x:Key="CitiesOutArg">[Cities]</OutArgument>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="WriteFileInArg">False</InArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <ui:AppendLine DisplayName="Write Logs" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[System.DateTime.Now.ToString()+ &quot;\t&quot; + String.Format(&quot;Total Number of cities in {0}  = {1}&quot;,  &quot;IN&quot;,Cities.Length.ToString())]" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,304" sap2010:WorkflowViewState.IdRef="Comment_4" Text="GetLocations.xml Provides the list of locations where measurement is done in a city &#xD;&#xA;INPUTS:&#xD;&#xA;&#xD;&#xA;Country : 2 Letter ISO Code of the country&#xD;&#xA;&#xD;&#xA;City : Name of the city obtained by using workflow &quot;GetCities.xml&quot;\n&#xD;&#xA;&#xD;&#xA;WriteFileInArg:  if output logs to be wrtitten in a file&#xD;&#xA;&#xD;&#xA;OUTPUT:&#xD;&#xA;output shall b stored in variable &quot;Locations&quot;&#xD;&#xA;If Name of the location is known this step can be commented and skipped&#xD;&#xA;&#xD;&#xA;" />
-    <Assign DisplayName="Assign City Name" sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign DisplayName="Assign City Name" sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_11">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[City]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">
-          <Literal x:TypeArguments="x:String" Value="" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String">Jaipur</InArgument>
       </Assign.Value>
     </Assign>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Get Measurement Locations in a City: Invoke GetLocations workflow" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="GetLocations.xaml">
@@ -167,7 +133,7 @@
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:AppendLine DisplayName="Write Logs" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_3" Text="[System.DateTime.Now.ToString()+ &quot;\t&quot; +String.Format(&quot;Total Number of Locations in City {0} &quot; , Locations.Length.ToString())]" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,362" sap2010:WorkflowViewState.IdRef="Comment_5" Text="Workflow  &quot;GetLatestMeasurement.xaml&quot; is used to read latest measurement of a location in &quot;City&quot; of  the &quot;Country&quot;&#xD;&#xA;&#xD;&#xA;INPUTS:&#xD;&#xA;&#xD;&#xA;City: Name of the city as acquired by using workflow GetCities.xaml&#xD;&#xA;&#xD;&#xA;Country: 2 letter ISO Code of the country&#xD;&#xA;WriteFileInArg: True/False    if output to be written in a file&#xD;&#xA;&#xD;&#xA;OUTPUT:&#xD;&#xA;&#xD;&#xA;Output shall be saved in variable &quot;LatestMeasurementOutArg&quot;" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="579,362" sap2010:WorkflowViewState.IdRef="Comment_5" Text="Workflow  &quot;GetLatestMeasurement.xaml&quot; is used to read latest measurement of a location in &quot;City&quot; of  the &quot;Country&quot;&#xA;&#xA;INPUTS:&#xA;&#xA;City: Name of the city as acquired by using workflow GetCities.xaml&#xA;&#xA;Country: 2 letter ISO Code of the country&#xA;WriteFileInArg: True/False    if output to be written in a file&#xA;&#xA;OUTPUT:&#xA;&#xA;Output shall be saved in variable &quot;LatestMeasurementOutArg&quot;" />
     <ui:InvokeWorkflowFile ContinueOnError="False" DisplayName="Get Latest Measurement Workflow" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="GetLatestMeasurement.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="CountryInArg">[Country]</InArgument>
@@ -179,19 +145,16 @@
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:AppendLine DisplayName="Write Logs" FileName="[LogFileName]" sap:VirtualizedContainerService.HintSize="579,87" sap2010:WorkflowViewState.IdRef="AppendLine_5" Text="[System.DateTime.Now.ToString()+ &quot;\t&quot; +String.Format(&quot;Total Number of LatestMeasurementsOut  in City {0} &quot; , LatestMeasurementsOut.Count.ToString())]" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,188" sap2010:WorkflowViewState.IdRef="Comment_7" Text="Now the latest measurements are known in all locations of a city. In following step we can set a limit value for a paramaeter. If the measured value goes beyond the Limit value for any location in the city the notifications shall be posted on AWS SNS.&#xD;&#xA;Similar steps can be used to set alert for any particular location also" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,151" sap2010:WorkflowViewState.IdRef="Comment_8" Text="Assign one Paramaetr name for which alert to be set.&#xD;&#xA;available measured parameters are:&#xD;&#xA;&#xD;&#xA;&quot;co&quot; , &quot;no2&quot;, &quot;o3&quot;, &quot;pm25&quot; , &quot;pm10&quot;, &quot;so2&quot;&#xD;&#xA;&#xD;&#xA;e.g. Parameter = &quot;pm25&quot;" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="579,151" sap2010:WorkflowViewState.IdRef="Comment_8" Text="Assign one Paramaetr name for which alert to be set.&#xA;available measured parameters are:&#xA;&#xA;&quot;co&quot; , &quot;no2&quot;, &quot;o3&quot;, &quot;pm25&quot; , &quot;pm10&quot;, &quot;so2&quot;&#xA;&#xA;e.g. Parameter = &quot;pm25&quot;" />
     <Assign DisplayName="Assign Paramater Value" sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[Parameter]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">
-          <Literal x:TypeArguments="x:String" Value="" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String">pm25</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,74" sap2010:WorkflowViewState.IdRef="Comment_9" Text="Assign limit value for the parmater  in integer&#xD;&#xA;e.g. for &quot;pm25&quot; ,    &#xD;&#xA;Limit = 100" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="579,74" sap2010:WorkflowViewState.IdRef="Comment_9" Text="Assign limit value for the parmater  in integer&#xA;e.g. for &quot;pm25&quot; ,    &#xA;Limit = 100" />
     <Assign DisplayName="Assign Limit Value" sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[Limit]</OutArgument>
@@ -200,7 +163,7 @@
         <InArgument x:TypeArguments="x:Int32">100</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="579,323" sap2010:WorkflowViewState.IdRef="Comment_10" Text="To publish alert message to AWS SNS , please create AWS account and create an SNS Topic for Message publication.  &#xD;&#xA;Provide values to the follwoing variables&#xD;&#xA;&#xD;&#xA;AwsProfileName: AWS Profile Name authorised to publish message&#xD;&#xA;&#xD;&#xA;AwsRegion:  AWS Region name where SNS Topic is created&#xD;&#xA; &#xD;&#xA;TopicArn:  TopicArn of AWS SNS Topic&#xD;&#xA;&#xD;&#xA;Please refer AWS SNS Documentation for the details&#xD;&#xA;" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="579,247" sap2010:WorkflowViewState.IdRef="Comment_10" Text="AwsProfileName: AWS Profile Name authorised to publish message e.g.  &quot;awsuser1&quot;&#xA;&#xA;AwsRegion:  AWS Region name where SNS Topic is created e.g. &quot;us-east-1&quot;&#xA; &#xA;TopicArn:  TopicArn of AWS SNS Topic&#xA;&#xA;Please refer AWS SNS Documentation for the details&#xA;" />
     <Assign DisplayName="Assign AWS Profile Name" sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[AwsProfileName]</OutArgument>
@@ -216,9 +179,7 @@
         <OutArgument x:TypeArguments="x:String">[AwsRegion]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">
-          <Literal x:TypeArguments="x:String" Value="" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String">["us-east-1"]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="579,60" sap2010:WorkflowViewState.IdRef="Assign_10">
