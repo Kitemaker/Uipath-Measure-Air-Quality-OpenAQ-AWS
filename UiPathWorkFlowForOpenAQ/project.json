@@ -5,7 +5,6 @@
   "dependencies": {
     "AWSSDK.Core": "[3.3.103.12]",
     "EILabs.OpenAQActivities": "[1.0.3]",
-    "UiPath.Excel.Activities": "[2.6.2]",
     "UiPath.System.Activities": "[19.7.0]",
     "UiPath.UIAutomation.Activities": "[19.7.0]",
     "UiPath.WebAPI.Activities": "[1.4.2]"

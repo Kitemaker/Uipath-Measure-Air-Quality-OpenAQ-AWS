@@ -9,7 +9,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1022,2313</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1182,2057</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="24">
@@ -63,12 +63,16 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetLocations" sap:VirtualizedContainerService.HintSize="982,2233" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="GetLocations" sap:VirtualizedContainerService.HintSize="1162,1997" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="Status" />
       <Variable x:TypeArguments="x:String" Name="LocationApiResult" />
       <Variable x:TypeArguments="x:String" Default="https://api.openaq.org/v1/locations?limit=10000&amp;country={0}&amp;city={1}" Name="API_GET_LOC_OF_CITY" />
-      <Variable x:TypeArguments="x:String" Default="IN" Name="Country" />
+      <Variable x:TypeArguments="x:String" Name="Country">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="o:LocationResult" Name="JsonLocations" />
       <Variable x:TypeArguments="o:Location[]" Name="Locations" />
     </Sequence.Variables>
@@ -77,7 +81,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign sap:VirtualizedContainerService.HintSize="1120,60" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[Country]</OutArgument>
       </Assign.To>
@@ -85,7 +89,7 @@
         <InArgument x:TypeArguments="x:String">[CountryInArg]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" BodyFormat="application/xml" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EndPoint="[String.Format(API_GET_LOC_OF_CITY, Country,CityInArg)]" sap:VirtualizedContainerService.HintSize="960,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[LocationApiResult]" StatusCode="[Status]" TimeoutMS="6000">
+    <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" BodyFormat="application/xml" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EndPoint="[String.Format(API_GET_LOC_OF_CITY, Country,CityInArg)]" sap:VirtualizedContainerService.HintSize="1120,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[LocationApiResult]" StatusCode="[Status]" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Attachments>
@@ -102,8 +106,8 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
-    <ui:DeserializeJson x:TypeArguments="o:LocationResult" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JsonLocations]" JsonString="[LocationApiResult]" />
-    <Assign sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:DeserializeJson x:TypeArguments="o:LocationResult" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="1120,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JsonLocations]" JsonString="[LocationApiResult]" />
+    <Assign sap:VirtualizedContainerService.HintSize="1120,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="o:Location[]">[Locations]</OutArgument>
       </Assign.To>
@@ -111,7 +115,7 @@
         <InArgument x:TypeArguments="o:Location[]">[JsonLocations.results]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign sap:VirtualizedContainerService.HintSize="1120,60" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[ApiRequestStatusOutArg]</OutArgument>
       </Assign.To>
@@ -119,7 +123,7 @@
         <InArgument x:TypeArguments="x:Int32">[Status]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign sap:VirtualizedContainerService.HintSize="1120,60" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="o:Location[]">[LocationsOutArg]</OutArgument>
       </Assign.To>
@@ -127,9 +131,9 @@
         <InArgument x:TypeArguments="o:Location[]">[JsonLocations.results]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[WriteFileInArg]" sap:VirtualizedContainerService.HintSize="960,1547" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[WriteFileInArg]" sap:VirtualizedContainerService.HintSize="1120,1343" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="835,1399" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence sap:VirtualizedContainerService.HintSize="975,1195" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Default="[&quot;Locations_&quot; + CityInArg + &quot;_&quot; + CountryInArg + &quot;.csv&quot;]" Name="FileName" />
             <Variable x:TypeArguments="o:Location" Name="localitem" />
@@ -139,14 +143,14 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:WriteTextFile DisplayName="Write Text File" FileName="[FileName]" sap:VirtualizedContainerService.HintSize="813,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="Name ,Country ,City, Count,Distance,SourceName,FirstUpdated,LastUpdated,Paramaeters,Coordinates" />
-          <ui:ForEach x:TypeArguments="o:Location" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="813,1148" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[Locations]">
+          <ui:WriteTextFile DisplayName="Write Text File" FileName="[FileName]" sap:VirtualizedContainerService.HintSize="933,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="Name ,Country ,City, Count,Distance,SourceName,FirstUpdated,LastUpdated,Paramaeters,Coordinates" />
+          <ui:ForEach x:TypeArguments="o:Location" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="933,976" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[Locations]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="o:Location">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="o:Location" Name="item" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="797,1014" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="897,842" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="output" />
                     <Variable x:TypeArguments="si:TextWriter" Name="textwriter" />
@@ -157,9 +161,9 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[(item.location &lt;&gt; &quot;&quot;) AND (item.city &lt;&gt; &quot;&quot;)]" sap:VirtualizedContainerService.HintSize="775,890" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[(item.location &lt;&gt; &quot;&quot;) AND (item.city &lt;&gt; &quot;&quot;)]" sap:VirtualizedContainerService.HintSize="855,750" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Then>
-                      <Sequence sap:VirtualizedContainerService.HintSize="436,742" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <Sequence sap:VirtualizedContainerService.HintSize="476,602" sap2010:WorkflowViewState.IdRef="Sequence_3">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="o:Coordinate" Name="coordinate" />
                           <Variable x:TypeArguments="x:String" Name="variable1" />
@@ -169,7 +173,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="414,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                        <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                           <Assign.To>
                             <OutArgument x:TypeArguments="o:Location">[localitem]</OutArgument>
                           </Assign.To>
@@ -177,7 +181,7 @@
                             <InArgument x:TypeArguments="o:Location">[item]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Assign sap:VirtualizedContainerService.HintSize="414,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                        <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_10">
                           <Assign.To>
                             <OutArgument x:TypeArguments="o:Coordinate">[coordinate]</OutArgument>
                           </Assign.To>
@@ -185,9 +189,9 @@
                             <InArgument x:TypeArguments="o:Coordinate">[item.coordinates]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="414,291" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,183" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                           <TryCatch.Try>
-                            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:String">[output]</OutArgument>
                               </Assign.To>
@@ -197,10 +201,10 @@
                             </Assign>
                           </TryCatch.Try>
                           <TryCatch.Catches>
-                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,129" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
@@ -208,7 +212,7 @@
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="s:Exception" Name="" />
                                 </ActivityAction.Argument>
-                                <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="x:String">[output]</OutArgument>
                                   </Assign.To>
@@ -220,11 +224,11 @@
                             </Catch>
                           </TryCatch.Catches>
                         </TryCatch>
-                        <ui:AppendLine DisplayName="Append Line" FileName="[FileName]" sap:VirtualizedContainerService.HintSize="414,87" sap2010:WorkflowViewState.IdRef="AppendLine_3" Text="[output]" />
+                        <ui:AppendLine DisplayName="Append Line" FileName="[FileName]" sap:VirtualizedContainerService.HintSize="434,87" sap2010:WorkflowViewState.IdRef="AppendLine_3" Text="[output]" />
                       </Sequence>
                     </If.Then>
                     <If.Else>
-                      <ui:AppendLine DisplayName="Append Line" FileName="LocationofCityError.log" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[&quot;Location  name is not avalable :&quot; + item.city + item.country]" />
+                      <ui:AppendLine DisplayName="Append Line" FileName="LocationofCityError.log" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[&quot;Location  name is not avalable :&quot; + item.city + item.country]" />
                     </If.Else>
                   </If>
                 </Sequence>
